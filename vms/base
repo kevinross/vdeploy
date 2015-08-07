@@ -1,0 +1,11 @@
+
+name = 'base'
+kernel = "/boot/vmlinuz-3.15.8-200.fc20.x86_64"
+ramdisk = "/boot/kitchensink.img"
+extra = "root=/dev/xvda xenvm=base rw tmem"
+memory = 256
+maxmem = 1024
+vcpus = 1
+vif = [ 'mac=00:16:3E:9E:0C:41,bridge=xenbr0' ]
+disk = [ 'phy:/dev/xenfs/base,xvda,w']
+on_restart = 'restart'

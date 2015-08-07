@@ -1,0 +1,26 @@
+#!/bin/bash
+
+SVC=$2
+HOST=$1
+
+cat <<EOF >/tmp/service_reg.sh
+N=$RANDOM
+export KRB5CCNAME="KEYRING:session:servicereg$N"
+export OFILE="\$(mktemp)"
+kinit -t user.keytab -k r0ssar00
+samba-tool domain exportkeytab \$OFILE --principal="$SVC/$HOST.cave.kevinross.name"
+kdestroy
+echo "\$OFILE"
+EOF
+
+scp /tmp/service_reg.sh root@pellet.cave.kevinross.name:/tmp/service_reg.sh
+F="$(ssh root@pellet.cave.kevinross.name /bin/bash /tmp/service_reg.sh)"
+scp root@pellet.cave.kevinross.name:$F $F
+ssh root@pellet.cave.kevinross.name rm -f /tmp/service_reg.sh
+ssh root@pellet.cave.kevinross.name rm -f $F
+
+ktutil <<EOF >/dev/null 2>&1
+read_kt $F
+write_kt /etc/krb5.keytab
+exit
+EOF

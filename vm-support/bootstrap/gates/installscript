@@ -1,0 +1,16 @@
+#!/bin/bash
+
+mkdir -p /opt
+
+cd /opt
+pip install "https://pypi.python.org/packages/2.7/p/parse/parse-1.6.6-py2-none-any.whl#md5=34121de9f078ed0ca6c0ba80a1af4fa0"
+
+if [ ! -d webmux ]; then
+	git clone https://github.com/ronreiter/webmux.git;
+	cd webmux;
+else
+	cd webmux;
+	git pull origin master;
+fi
+sed -i requirements.txt -e 's/==.*//' requirements.txt
+python setup.py install

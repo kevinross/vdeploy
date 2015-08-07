@@ -1,0 +1,15 @@
+[Unit]
+Requires=network.target server-online.service
+After=network-online.target server-online.service
+Before=plymouth-quit.service
+
+[Service]
+Type=oneshot
+User=root
+Environment="KRB5CCNAME=FILE:/tmp/krb5cc_0"
+StandardOutput=kmsg+console
+ExecStartPre=/bin/scp -r wheatley.cave.kevinross.name:vm-support /root/vm-support
+ExecStart=/bin/bash --login -c "/bin/python -u /root/vm-support/onetimestartup.py"
+
+[Install]
+WantedBy=multi-user.target

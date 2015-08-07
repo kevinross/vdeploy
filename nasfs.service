@@ -1,0 +1,18 @@
+[Unit]
+PartOf=kinit.service
+After=kinit.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+User=root
+Environment="KRB5CCNAME=FILE:/tmp/krb5cc_0"
+ExecStartPre=/bin/mkdir -p /export
+ExecStartPre=/bin/python /root/smb_online.py
+ExecStart=/bin/mount -t cifs -o sec=krb5 //wheatley.cave.kevinross.name/export /export
+ExecStart=/bin/mount -t cifs -o sec=krb5 //wheatley.cave.kevinross.name/share /export/Volumes/share
+ExecStop=/bin/umount /export/Volumes/share
+ExecStop=/bin/umount /export
+
+[Install]
+WantedBy=multi-user.target

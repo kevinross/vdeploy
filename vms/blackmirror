@@ -1,0 +1,10 @@
+
+name = 'blackmirror'
+kernel = "/boot/vmlinuz-xenvm"
+ramdisk = "/boot/initramfs-xenvm.img"
+extra = "root=LABEL=xenfs.base netroot=iscsi:anon:anon@192.168.10.185:3260:::iqn.2015-01.name.kevinross.cave:tgt xenvm=blackmirror aufs=local  ro tmem rd.break=premount"
+memory = 256
+maxmem = 1024
+vcpus = 1
+vif = [ 'mac=00:16:3E:9E:0C:63,bridge=xenbr0' ]
+on_reboot = 'restart'

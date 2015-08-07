@@ -1,0 +1,6 @@
+#!/bin/sh
+yum-builddep -y kernel
+pushd /root
+yumdownloader --source kernel
+yumdownloader --source xen
+popd

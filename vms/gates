@@ -1,0 +1,10 @@
+name = 'gates'
+kernel = "/boot/vmlinuz-xenvm"
+ramdisk = "/boot/initramfs-xenvm.img"
+extra = "root=LABEL=xenfs.base xenvm=gates aufs=local  ro tmem"
+memory = 200
+maxmem = 1024
+vcpus = 1
+vif = [ 'mac=00:16:3E:9E:0C:61,bridge=xenbr0' ]
+disk = [ 'phy:/dev/zvol/xenfs/root/base,xvda,r', 'phy:/dev/xenfs/vms/gates/system,xvdb,w', 'phy:/dev/xenfs/vms/gates/local,xvdc,w' ]
+on_reboot = 'restart'

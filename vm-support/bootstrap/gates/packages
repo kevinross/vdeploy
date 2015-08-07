@@ -1,0 +1,14 @@
+python-twisted
+python-tornado
+python-futures
+pyOpenSSL
+python-pyasn1
+python-pyasn1-modules
+python-pycparser
+python-six
+python-service-identity
+python-wsgiref
+python-zope-interface
+python-sqlobject
+python-jinja2
+python-crypto

@@ -1,0 +1,13 @@
+[Unit]
+Requires=network.target network-online.target systemd-n
+After=network-online.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=no
+User=root
+Environment="KRB5CCNAME=FILE:/tmp/krb5cc_0"
+ExecStart=/bin/kinit -k 'WHEATLEY$'
+
+[Install]
+WantedBy=daily-timer.target multi-user.target

@@ -1,0 +1,10 @@
+VER=6.4.6
+cd /opt
+wget -c https://www.atlassian.com/software/jira/downloads/binary/atlassian-jira-$VER.tar.gz
+tar -xzvf atlassian-jira-$VER.tar.gz
+if [ ! -d atlassian ]; then
+	mkdir atlassian
+fi
+if [ ! -d atlassian/jira ]; then
+	mv atlassian-jira-$VER-standalone atlassian/jira
+fi

@@ -1,0 +1,11 @@
+
+name = 'kernel'
+kernel = "/boot/vmlinuz-xenvm"
+ramdisk = "/boot/initramfs-xenvm.img"
+extra = "root=LABEL=xenfs.base xenvm=kernel aufs=local vmdevel ro tmem"
+memory = 2048
+maxmem = 6144
+vcpus = 1
+vif = [ 'mac=00:16:3E:9E:0C:4A,bridge=xenbr0' ]
+disk = [ 'phy:/dev/zvol/xenfs/root/base,xvda,r', 'phy:/dev/xenfs/vms/kernel/system,xvdb,w', 'phy:/dev/xenfs/vms/kernel/local,xvdc,w' ]
+on_reboot = 'restart'

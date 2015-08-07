@@ -1,0 +1,13 @@
+#!/bin/bash
+. ~/.bash_profile
+
+# setup ZFS
+pushd /aufs/system/root >/dev/null 2>&1
+scp root@wheatley.cave.kevinross.name:"/root/spl/*.rpm" ./
+scp root@wheatley.cave.kevinross.name:"/root/zfs/*.rpm" ./
+
+yum install -y $(ls *.rpm | while read line; do echo "/root/$line"; done | tr '\n' ' ')
+
+rm *.rpm
+
+popd >/dev/null 2>&1

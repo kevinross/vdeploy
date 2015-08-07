@@ -1,0 +1,8 @@
+httpd-tools
+httpd-filesystem
+mariadb
+mariadb-server
+nginx
+system-logos-httpd
+/etc/mime.types
+php

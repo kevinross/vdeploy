@@ -1,0 +1,10 @@
+name = 'fed21'
+kernel = "/xenfs/vmlinuz"
+ramdisk = "/xenfs/initramfs-21.img"
+extra = "root=UUID=34b8e404-97c6-4f9f-a39f-980784d5f723 ro LANG=en_CA.UTF-8 xen-fbfront.video=32,1024,768"
+memory = 2048
+maxmem = 6144
+vcpus = 1
+vif = [ 'mac=00:16:3E:9E:0C:4F,bridge=xenbr0' ]
+disk = [ 'phy:/dev/sdd,xvda,w' ]
+vfb = [ 'type=vnc,vnc=1,vncpasswd=password' ]

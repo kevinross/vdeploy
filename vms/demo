@@ -1,0 +1,11 @@
+
+name = 'demo'
+kernel = "/boot/vmlinuz-xenvm"
+ramdisk = "/boot/initramfs-xenvm.img"
+extra = "root=LABEL=xenfs.base xenvm=demo aufs=local  ro tmem"
+memory = 256
+maxmem = 1024
+vcpus = 1
+vif = [ 'mac=00:16:3E:9E:0C:62,bridge=xenbr0' ]
+disk = [ 'phy:/dev/zvol/xenfs/root/base,xvda,r', 'phy:/dev/xenfs/vms/demo/system,xvdb,w', 'phy:/dev/xenfs/vms/demo/local,xvdc,w' ]
+on_reboot = 'restart'

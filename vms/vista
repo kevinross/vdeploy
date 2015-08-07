@@ -1,0 +1,18 @@
+# really win2012 but vista is portal-esque
+name = "vista"
+builder = "hvm"
+memory = 3900
+vcpus = 2
+vif = [ 'type=ioemu,bridge=xenbr0,mac=00:16:3E:9E:0C:51' ]
+disk = [ 'phy:/dev/zvol/xenfs/vms/vista/root,hda,w' ]
+boot = 'c'
+
+stdvga=0
+serial = 'pty'
+usbdevice = 'tablet'
+vfb = [ 'type=vnc,vnc=1,vncpasswd=password' ]
+
+device_model_stubdomain_override=1
+xen_platform_pci=1
+viridian=1
+

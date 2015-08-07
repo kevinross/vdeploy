@@ -1,0 +1,19 @@
+[Unit]
+Requires=network.target xenstored.service zfs-mount.service dbus.socket smb.service
+Wants=xenfs-vms-%i.mount
+After=xenstored.service zfs-mount.service xenfs-vms-%i.mount dbus.socket smb.service
+
+[Service]
+Type=dbus
+WorkingDirectory=/root
+ExecStartPre=/usr/bin/python /root/template.py vms/%i
+ExecStartPre=/usr/sbin/xl create vms/%i
+ExecStart=/usr/bin/python -u /root/wait_online.py %i
+ExecStop=/usr/sbin/xl shutdown -w %i
+ExecStop=/bin/bash /root/wait_offline.sh %i
+ExecStop=/bin/bash -c "for i in system local; do mount /dev/xenfs/vms/%i/$i /mnt; fstrim /mnt; umount /mnt; done"
+BusName=name.kevinross.vm.vms.%i
+TimeoutSec=300
+
+[Install]
+WantedBy=multi-user.target

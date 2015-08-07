@@ -1,0 +1,10 @@
+[Unit]
+Description=Daily Timer
+
+[Timer]
+OnCalendar=daily
+Persistent=true
+Unit=timer-daily.target
+
+[Install]
+WantedBy=multi-user.target

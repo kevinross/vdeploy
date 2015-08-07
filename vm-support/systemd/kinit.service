@@ -1,0 +1,15 @@
+[Unit]
+Requires=network.target server-online.service
+After=network-online.target server-online.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=no
+User=root
+Environment="KRB5CCNAME=FILE:/tmp/krb5cc_0"
+ExecStartPre=/bin/nm-online -t 30
+ExecStartPre=/bin/bash -c "while ! ping -c1 wheatley.cave.kevinross.name &>/dev/null; do :; done"
+ExecStart=/bin/bash -c 'kinit -k $(cat /etc/hostname.upper)$'
+
+[Install]
+WantedBy=daily-timer.target multi-user.target

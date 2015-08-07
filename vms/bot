@@ -1,0 +1,18 @@
+# really OSX but bot is portal-esque
+name = "bot"
+builder = "hvm"
+memory = 2048
+vif = [ 'type=ioemu,bridge=xenbr0,mac=00:16:3E:9E:0C:53' ]
+disk = [ 'phy:/dev/zvol/xenfs/vms/bot/root,hda,w', 'file:/Volumes/share/isos/iDeneb_v1.4_10.5.6.iso,hdb:cdrom,r' ]
+boot = 'd'
+
+#device_model_args = ['-device','isa-applesmc,osk="ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc"', '-device', 'usb-kbd', '-device', 'usb-mouse']
+
+stdvga=0
+serial = 'pty'
+#usbdevice = 'tablet'
+vfb = [ 'type=vnc,vnc=1,vncpasswd=password' ]
+
+device_model_stubdomain_override=1
+xen_platform_pci=1
+viridian=1

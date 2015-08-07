@@ -1,0 +1,12 @@
+
+name = 'tracker'
+kernel = "/boot/vmlinuz-xenvm"
+ramdisk = "/boot/initramfs-xenvm.img"
+extra = "root=LABEL=xenfs.base xenvm=tracker overlayfs=local  ro tmem rd.break=prepivot"
+memory = 2000
+maxmem = 5000
+vcpus = 1
+vif = [ 'mac=00:16:3E:9E:0C:60,bridge=xenbr0' ]
+disk = [ 'phy:/dev/zvol/xenfs/root/base,xvda,r', 'phy:/dev/xenfs/vms/tracker/system,xvdb,w', 'phy:/dev/xenfs/vms/tracker/local,xvdc,w', 'phy:/dev/xenfs/vms/tracker/swap,xvdd,w' ]
+on_reboot = 'restart'
+systemd_timeout = 300
