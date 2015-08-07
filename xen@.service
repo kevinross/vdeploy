@@ -6,7 +6,7 @@ After=xenstored.service zfs-mount.service xenfs-vms-%i.mount dbus.socket smb.ser
 [Service]
 Type=dbus
 WorkingDirectory=/root
-ExecStartPre=/usr/bin/python /root/template.py vms/%i
+ExecStartPre=/usr/bin/python /root/init.py vms/%i
 ExecStartPre=/usr/sbin/xl create vms/%i
 ExecStart=/usr/bin/python -u /root/wait_online.py %i
 ExecStop=/usr/sbin/xl shutdown -w %i
